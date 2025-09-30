@@ -5,14 +5,21 @@ class BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @Column({type: "datetime"})
+    @Column({type: "timestamp without time zone"})
     createdAt: Date
 
-    @Column({type: "datetime"})
+    @Column({type: "timestamp without time zone"})
     updatedAt: Date
 
-    @Column({type: "datetime"})
+    @Column({type: "timestamp without time zone"})
     deletedAt: Date
+
+    constructor() {
+        this.id = ""
+        this.createdAt = new Date()
+        this.updatedAt = new Date()
+        this.deletedAt = new Date()
+    }
 }
 
 @Entity()
@@ -33,7 +40,16 @@ export class User extends BaseEntity {
     isActive: boolean
 
     @OneToMany(() => Todo, (todo) => todo.user)
-    todos: Todo[]
+    todos!: Todo[]
+
+    constructor() {
+        super()
+        this.firstName = ""
+        this.lastName = ""
+        this.email = ""
+        this.password = ""
+        this.isActive = false
+    }
 }
 
 @Entity()
@@ -49,4 +65,12 @@ export class Todo extends BaseEntity {
 
     @ManyToOne(() => User, (user) => user.todos)
     user: User
+
+    constructor() {
+        super()
+        this.title = ""
+        this.description = ""
+        this.isDone = false
+        this.user = new User()
+    }
 }

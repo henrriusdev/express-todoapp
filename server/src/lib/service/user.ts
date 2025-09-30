@@ -15,11 +15,7 @@ export async function createUser(request: SignupRequest): Promise<UserResponse> 
         }
     } catch (error) {
         console.error("Error creating user", error)
-        return {
-            data: null,
-            message: "Error creating user",
-            success: false,
-        }
+        throw error
     }
 }
 
@@ -43,11 +39,7 @@ export async function updateUser(request: UpdateUserRequest): Promise<UserRespon
         }
     } catch (error) {
         console.error("Error updating user", error)
-        return {
-            data: null,
-            message: "Error updating user",
-            success: false,
-        }
+        throw error
     }
 }
 
@@ -69,16 +61,12 @@ export async function deleteUser(userId: string): Promise<UserResponse> {
             .execute()
 
         return {
-            data: null,
+            data: user,
             message: "User deleted successfully",
             success: true,
         }
     } catch (error) {
         console.error("Error deleting user", error)
-        return {
-            data: null,
-            message: "Error deleting user",
-            success: false,
-        }
+        throw error
     }
 }

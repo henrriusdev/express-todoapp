@@ -19,12 +19,7 @@ export async function getUserTodos(request: GetTodosRequest): Promise<TodosRespo
         }
     } catch (error) {
         console.error("Error fetching todos", error)
-        return {
-            data: [],
-            message: "Error fetching todos",
-            success: false,
-            total: 0
-        }
+        throw error
     }
 }
 
@@ -43,11 +38,7 @@ export async function createTodo(request: CreateTodoRequest): Promise<TodoRespon
         }
     } catch (error) {
         console.error("Error creating todo", error)
-        return {
-            data: null,
-            message: "Error creating todo",
-            success: false,
-        }
+        throw error
     }
 }
 
@@ -74,11 +65,7 @@ export async function updateTodo(request: UpdateTodoRequest): Promise<TodoRespon
         }
     } catch (error) {
         console.error("Error updating todo", error)
-        return {
-            data: null,
-            message: "Error updating todo",
-            success: false,
-        }
+        throw error
     }
 }
 
@@ -100,16 +87,12 @@ export async function deleteTodo(todoId: string): Promise<TodoResponse> {
             .execute()
 
         return {
-            data: null,
+            data: todo,
             message: "Todo deleted successfully",
             success: true,
         }
     } catch (error) {
         console.error("Error deleting todo", error)
-        return {
-            data: null,
-            message: "Error deleting todo",
-            success: false,
-        }
+        throw error
     }
 }
