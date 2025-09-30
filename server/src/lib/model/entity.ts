@@ -3,23 +3,16 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany} from "type
 @Entity()
 class BaseEntity {
     @PrimaryGeneratedColumn("uuid")
-    id: string
+    id!: string
 
-    @Column({type: "timestamp without time zone"})
-    createdAt: Date
+    @Column({type: "timestamp without time zone", default: () => "CURRENT_TIMESTAMP"})
+    createdAt!: Date
 
-    @Column({type: "timestamp without time zone"})
-    updatedAt: Date
+    @Column({type: "timestamp without time zone", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP"})
+    updatedAt!: Date
 
-    @Column({type: "timestamp without time zone"})
-    deletedAt: Date
-
-    constructor() {
-        this.id = ""
-        this.createdAt = new Date()
-        this.updatedAt = new Date()
-        this.deletedAt = new Date()
-    }
+    @Column({type: "timestamp without time zone", nullable: true})
+    deletedAt?: Date
 }
 
 @Entity()
