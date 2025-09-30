@@ -10,11 +10,8 @@
     "module": "nodenext",
     "target": "esnext",
     "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
-
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
@@ -39,6 +36,6 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   }
 }
