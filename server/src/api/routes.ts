@@ -13,6 +13,7 @@ export function todoRoutes(){
 
 export function userRoutes(){
     const e = Router()
+    e.post("/login", user.logIn)
     e.post("/", user.create)
     e.patch("/:userId", user.update)
     e.delete("/:userId", user.del)

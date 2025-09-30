@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
     subscribers: [],
     migrations: [],
     entities: [User, Todo],
-    logging: true,
+    logging: false,
 })
 
 export let todoRepo: Repository<Todo>;

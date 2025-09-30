@@ -1,5 +1,18 @@
 import {RequestHandler} from "express";
-import {createUser, deleteUser, updateUser} from "../../lib/service/user";
+import {createUser, deleteUser, login, updateUser} from "../../lib/service/user";
+
+export const logIn: RequestHandler = async (req, res) => {
+    try {
+        const result = await login(req.body.email, req.body.password)
+        res.status(200).json(result)
+    } catch (error) {
+        console.error("Error logging in", error)
+        res.status(500).json({
+            message: "Error logging in",
+            success: false,
+        })
+    }
+}
 
 export const create: RequestHandler = async (req, res) => {
     try {
